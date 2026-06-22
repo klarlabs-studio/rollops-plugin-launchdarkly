@@ -18,7 +18,7 @@ func TestApplyFlag_PatchesRolloutAndOn(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		path = r.URL.Path
 		b, _ := io.ReadAll(r.Body)
-		json.Unmarshal(b, &patch)
+		_ = json.Unmarshal(b, &patch)
 		w.WriteHeader(200)
 	}))
 	defer srv.Close()
@@ -47,7 +47,7 @@ func TestApplyFlag_DisabledTurnsOff(t *testing.T) {
 	var patch []map[string]any
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		b, _ := io.ReadAll(r.Body)
-		json.Unmarshal(b, &patch)
+		_ = json.Unmarshal(b, &patch)
 		w.WriteHeader(200)
 	}))
 	defer srv.Close()
